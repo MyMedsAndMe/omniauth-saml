@@ -18,8 +18,8 @@ module OmniAuth
           additional_params[mapped_param_key] = request.params[request_param_key.to_s] if request.params.has_key?(request_param_key.to_s)
         end if runtime_request_parameters
 
+        authn_request = OneLogin::RubySaml::Authrequest.new
         settings = OneLogin::RubySaml::Settings.new(options)
-        authn_request = OneLogin::RubySaml::Authrequest.new(settings)
 
         redirect(authn_request.create(settings, additional_params))
       end
